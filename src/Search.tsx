@@ -1,30 +1,36 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-
 import './Search.css';
+import omdbApiSearch from './omdbApiSearch';
 
 function Search() {
   const [value, setValue] = useState('');
   const [results, setResults] = useState<any>([]);
+  let searchResult;
 
   useEffect(() => {
-    const URL = `https://omdbapi.com/?apikey=a086c7ae&s=${value}&type=movie`;
-    axios.get(URL).then(response => {
-      setResults([response.data.Search]);
-    });
+    omdbApiSearch(value)
+    .then(data => {
+      setResults([data.Search])
+  })
+  .catch(err => console.log(err))
+
   }, [value]);
 
-  const searchResult: any = results[0] && results[0].map((movie: any) => {
-    if (movie.Title) {
-      return (
-        <div className="result">
-          <img src={movie.Poster} alt={movie.Title} width="300" height="400"></img>
-          <div className="result-content">Title: {movie.Title}</div>
-          <div className="result-content">Year Released: {movie.Year}</div>
-        </div>
-      );
-    }
-  });
+  if(results[0]) {
+    searchResult = results[0].map((movie: any) => {
+
+      if (movie.Title) {
+        return (
+          <div className="result">
+            <img src={movie.Poster} alt={movie.Title} width="300" height="400"></img>
+            <div className="result-content">Title: {movie.Title}</div>
+            <div className="result-content">Year Released: {movie.Year}</div>
+            <div className="result-content">Type: {movie.Type}</div>
+          </div>
+        );
+      }
+  })
+  };
 
   return (
     <div className="Search">
