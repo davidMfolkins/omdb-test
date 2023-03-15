@@ -1,11 +1,11 @@
 import './App.css';
-// import Search from './Search';
+import Search from './Search';
 
 function App() {
   return (
     <div className="App">
       <div className="app-title">OMDB Search</div>
-      {/* <Search /> */}
+      <Search />
       <div className="footer-container">
         </div>
     </div>
