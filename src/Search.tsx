@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import './Search.css';
-import omdbApiSearch from './omdbApiSearch';
+import {omdbApiSearch} from './omdbApiSearch';
+import MovieModal from './MovieModal';
 
 function Search() {
   const [value, setValue] = useState('');
   const [results, setResults] = useState<any>([]);
+  const [openModal, setOpenModal] = useState(false);
+  const [movie, setMovie] = useState();
   let searchResult;
 
   useEffect(() => {
@@ -20,8 +23,9 @@ function Search() {
     searchResult = results[0].map((movie: any) => {
 
       if (movie.Title) {
+        console.log(movie.Title)
         return (
-          <div className="result">
+          <div className="result" onClick={() => (setOpenModal(true), setMovie(movie.Title), window.scrollTo(0, 200))}>
             <img src={movie.Poster} alt={movie.Title} width="300" height="400"></img>
             <div className="result-content">Title: {movie.Title}</div>
             <div className="result-content">Year Released: {movie.Year}</div>
@@ -32,8 +36,16 @@ function Search() {
   })
   };
 
+  console.log(movie)
   return (
     <div className="Search">
+                {openModal ? 
+                
+          <div className='modal-container'>
+            <button className='modal-button' onClick={() => setOpenModal(false)}>X</button>
+          <MovieModal movie={movie}/> 
+          </div>
+          : null }
       <div>
           <form className="search-container" onSubmit={event => event.preventDefault()}>
             <input className="search-bar"
@@ -49,8 +61,8 @@ function Search() {
           <div className="result-container">
             {searchResult}
           </div>
+
         </div>
-      );
     </div>
   );
 }
