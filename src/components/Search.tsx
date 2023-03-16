@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import './Search.css';
+import '../css/Search.css';
 import { omdbApiSearch } from './omdbApiSearch';
 import MovieModal from './MovieModal';
-import { setDefaultResultOrder } from 'dns';
 
 function Search() {
   const [value, setValue] = useState('');
@@ -16,14 +15,13 @@ function Search() {
     const delayDebounceFn = setTimeout(() => {
       omdbApiSearch(value)
       .then(data => {
-        console.log(data)
         if (data.Error === 'Movie not found!') {
           setError(true)
         }
         setResults([data.Search])
       })
       .catch(err => console.log(err))
-    }, 1000)
+    }, 500)
 
     return () => clearTimeout(delayDebounceFn)
     
@@ -37,9 +35,9 @@ function Search() {
         return (
           <div className="result" onClick={() => (setOpenModal(true), setMovie(movie.Title), window.scrollTo(0, 200))}>
             <img src={movie.Poster} alt={movie.Title} width="300" height="400"></img>
-            <div className="result-content">Title: {movie.Title}</div>
-            <div className="result-content">Year Released: {movie.Year}</div>
-            <div className="result-content">Type: {movie.Type}</div>
+            <p className="result-content">Title: {movie.Title}</p>
+            <p className="result-content">Year Released: {movie.Year}</p>
+            <p className="result-content">Type: {movie.Type}</p>
           </div>
         );
       }

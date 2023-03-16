@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import './MovieModal.css';
+import '../css/MovieModal.css';
 import { omdbMovieSearch } from './omdbApiSearch';
+import { Movie } from '../types/movie';
 
 
 function MovieModal(name: any) {
-const [movie, setMovie] = useState<any>()
+
+const [movie, setMovie] = useState<Movie>()
   useEffect(() => {
     omdbMovieSearch(name)
     .then(data => {
@@ -12,7 +14,7 @@ const [movie, setMovie] = useState<any>()
   })
   .catch(err => console.log(err))
 
-  }, []);
+  }, [name]);
 
   console.log(movie)
   return (
@@ -20,18 +22,15 @@ const [movie, setMovie] = useState<any>()
       {movie ?
       <div className='container-content'>
        <img src={movie.Poster} alt={movie.Title} width="300" height="400"></img>
-       <div className="movie-info">Title: {movie.Title}</div>
-       <div className="movie-info">Year Released: {movie.Year}</div>
-       <div className="movie-info">Director: {movie.Director}</div>
-       <div className="movie-info">Actors: {movie.Actors}</div>
-       <div className="movie-info">Genre: {movie.Genre}</div>
-       <div className="movie-info">Plot: {movie.Plot}</div>
+       <p className="movie-info">Title: {movie.Title}</p>
+       <p className="movie-info">Year Released: {movie.Released}</p>
+       <p className="movie-info">Director: {movie.Director}</p>
+       <p className="movie-info">Actors: {movie.Actors}</p>
+       <p className="movie-info">Genre: {movie.Genre}</p>
+       <p className="movie-info">Plot: {movie.Plot}</p>
        </div>
        :
-       null
-      
-      }
-           
+       null}   
     </div>
   
   )
