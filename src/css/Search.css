@@ -11,7 +11,7 @@
 }
 
 .result:hover {
-  box-shadow: 5px 5px white;
+  box-shadow: 5px 5px #d62d2d;
 }
 .search-container {
   display: flex;
@@ -48,12 +48,17 @@
 
 .result-message {
   color: white;
+  text-align: center;
 }
 
 .modal-container {
   position: absolute;
   top: 32%;
-  left: 33%;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 500px;
 }
 
 .modal-button {
@@ -65,4 +70,16 @@
   cursor: pointer;
   outline: none;
   font-size: 30px;
+}
+img {
+  margin-bottom: 10px;
+}
+@media only screen and (max-width: 600px) {
+  .modal-container {
+    width: 300px;
+  }
+  .search-bar {
+    font-size: 20px;
+    width: 70%;
+  }
 }

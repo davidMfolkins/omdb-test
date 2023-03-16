@@ -21,7 +21,7 @@ const [movie, setMovie] = useState<Movie>()
     <div className='container'>
       {movie ?
       <div className='container-content'>
-       <img src={movie.Poster} alt={movie.Title} width="300" height="400"></img>
+       <img className='modal-image' src={movie.Poster} alt={movie.Title} width="300" height="400"></img>
        <p className="movie-info">Title: {movie.Title}</p>
        <p className="movie-info">Year Released: {movie.Released}</p>
        <p className="movie-info">Director: {movie.Director}</p>

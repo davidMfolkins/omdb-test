@@ -14,4 +14,15 @@
 .movie-info {
   align-self: baseline;
   margin-top: 5px;
+  color: white;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    width: 300px;;
+  }
+  .modal-image {
+    height: 300px;
+    width: 200px;
+  }
 }

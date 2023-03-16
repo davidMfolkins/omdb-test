@@ -17,8 +17,10 @@ function Search() {
       .then(data => {
         if (data.Error === 'Movie not found!') {
           setError(true)
+        } else {
+          setResults([data.Search])
+          setError(false)
         }
-        setResults([data.Search])
       })
       .catch(err => console.log(err))
     }, 500)
