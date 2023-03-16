@@ -6,7 +6,6 @@ import axios from 'axios';
 }
 
 function omdbMovieSearch(value: any) {
-  console.log(value.movie)
   const url = `http://www.omdbapi.com/?apikey=a086c7ae&t=${value.movie}&plot=full`;
   return axios.get(url).then(response => response.data)
 }

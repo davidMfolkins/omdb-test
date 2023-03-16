@@ -46,6 +46,10 @@
   color: white;
 }
 
+.result-message {
+  color: white;
+}
+
 .modal-container {
   position: absolute;
   top: 32%;
