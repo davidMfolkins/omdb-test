@@ -16,7 +16,6 @@ const [movie, setMovie] = useState<Movie>()
 
   }, [name]);
 
-  console.log(movie)
   return (
     <div className='container'>
       {movie ?

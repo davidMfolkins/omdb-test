@@ -12,12 +12,15 @@ function Search() {
   let searchResult;
 
   useEffect(() => {
-    const delayDebounceFn = setTimeout(() => {
+    //delay the results so it will only send the api call after the use is done searching
+    const delayResults = setTimeout(() => {
       omdbApiSearch(value)
       .then(data => {
+        // check if movie is not found, if not found show error
         if (data.Error === 'Movie not found!') {
           setError(true)
         } else {
+        // otherwise don't show error and set results to the results from api
           setResults([data.Search])
           setError(false)
         }
@@ -25,7 +28,7 @@ function Search() {
       .catch(err => console.log(err))
     }, 500)
 
-    return () => clearTimeout(delayDebounceFn)
+    return () => clearTimeout(delayResults)
     
 
   }, [value]);
@@ -73,7 +76,6 @@ function Search() {
           </p>
           }
         </div>
-
       </div>
     </div>
   );

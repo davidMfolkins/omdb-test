@@ -6,8 +6,6 @@ function App() {
     <div className="App">
       <div className="app-title">OMDB Movie Search</div>
       <Search />
-      <div className="footer-container">
-        </div>
     </div>
   );
 }
